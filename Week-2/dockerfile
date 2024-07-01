@@ -1,0 +1,4 @@
+FROM ollama/ollama
+WORKDIR /ollama_files
+COPY ollama_files/ .
+
