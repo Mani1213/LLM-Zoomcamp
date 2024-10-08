@@ -1,3 +1,0 @@
-orjsonl
-pymongo
-elasticsearch
