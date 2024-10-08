@@ -22,12 +22,12 @@ def ask_question(esClient, userInput, indexName):
     context = ''.join([output['answer'] for output in ragOutputs])
     evaluateResult = evaluate(lambda q: elasticSearch(esClient, userInput, indexName))
 
-    # Use LLM Model
+    
     output, responseTime = query({"inputs": {"question": userInput, "context": context}})
     result = output['answer']
     docId = generate_document_id(userInput, result)
 
-    # Save users' output performance
+
     captureUserInput(
         docId, userInput, result, output['score'], responseTime, 
         evaluateResult['hit_rate'], evaluateResult['mrr']
@@ -52,7 +52,7 @@ def main():
     st.set_page_config(page_title="Legal Assistant")
     st.title("Legal Document Assistant")
     
-    # Initialize session state
+    
     initialize_session_state()
 
     userInput = st.text_input("Enter your question:")
@@ -78,7 +78,7 @@ def main():
         else:
             st.warning("Please enter a question before clicking Ask.")
 
-    # Display result if available
+    
     if st.session_state.result:
         st.write(st.session_state.result)
         display_feedback_buttons()
